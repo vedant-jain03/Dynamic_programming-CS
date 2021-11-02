@@ -1,0 +1,30 @@
+Problem Statement: https://cses.fi/problemset/task/1634
+
+```
+#include <bits/stdc++.h>
+using namespace std;
+
+int find(vector<int>& coin,int n)
+{
+    vector<int> dp(n+1,10000);
+    dp[0]=0;
+    for(int i=1;i<=n;i++)
+    {
+        for(auto x:coin)
+        {
+            if(i-x>=0)
+            {
+                dp[i] = min(dp[i],dp[i-x]+1);
+            }
+        }
+    }
+    return dp[n];
+}
+
+int main()
+{
+    vector<int> coin ={1,5,7};
+    int amount = 11;
+    cout<<find(coin,amount);
+}
+```
