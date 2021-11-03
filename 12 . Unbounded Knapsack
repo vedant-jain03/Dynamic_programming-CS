@@ -1,0 +1,28 @@
+```
+#include <bits/stdc++.h>
+using namespace std;
+
+int find(vector<int>& price,vector<int>& weight,int W)
+{
+    vector<int> dp(W+1,0);
+    for(int i=1;i<=W;i++)
+    {
+        for(int j=0;j<price.size();j++)
+        {
+            if(i-weight[j]>=0)
+            {
+                dp[i]=max(dp[i], dp[i-weight[j]]+price[j]);
+            }
+        }
+    }
+    return dp[W];
+}
+
+int main()
+{
+    vector<int> price={10, 40, 50, 70};
+    vector<int> weight={1, 3, 4, 5};
+    int w=8;
+    cout<<find(price,weight,w);
+}
+```
